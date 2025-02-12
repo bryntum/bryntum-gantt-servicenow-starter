@@ -353,6 +353,10 @@ function updateOperation(updated, table) {
                     updateBody.duration = calculateDuration(startDate, data.endDate);
                 }
 
+                if (typeof updateBody.wbs_order === 'number'
+                ) {
+                    updateBody.wbs_order += 1;
+                }
 
                 const projectResponse = await fetch(
                     `https://${process.env.SERVICENOW_PDI_ID}.service-now.com/api/now/table/pm_project?sysparm_fields=sys_id,short_description,start_date,end_date,wbs_order,percent_complete,description,status,override_status&sys_id=${process.env.SERVICENOW_PROJECT_SYS_ID}`,
